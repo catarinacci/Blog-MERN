@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +21,7 @@
     "mongoose": "7.0",
     "morgan": "^1.10.0",
     "node": "^21.7.1",
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "patch-package": "^8.0.0"
   }
 }

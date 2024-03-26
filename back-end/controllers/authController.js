@@ -20,6 +20,7 @@ exports.signup = async (req, res, next) => {
 
 exports.signin = async (req, res, next) => {
   const { email, password } = req.body;
+  //console.log(email)
   try {
     if (!email) {
       return next(new ErrorResponse("Please add email", 400));
@@ -29,15 +30,17 @@ exports.signin = async (req, res, next) => {
     }
 
     const user = await User.findOne({ email });
+    //console.log(user)
     if (!user) {
       return next(new ErrorResponse("Invalid credentials", 400));
     }
-
+    // console.log(user,'000000')
     const isMatched = await user.comparePassword({ password });
     if (!isMatched) {
+      // console.log(user,'111111')
       return next(new ErrorResponse("Invalid credentials", 400));
     }
-
+    // console.log(user, '222222')
     sendTokenResponse(user, 200, res);
   } catch (error) {
     next(error);
@@ -45,6 +48,7 @@ exports.signin = async (req, res, next) => {
 };
 
 const sendTokenResponse = (user, codeStatus, res) => {
+  console.log(user, 'tokennnnn')
   const token = user.getJwtToken();
   res
     .status(codeStatus)

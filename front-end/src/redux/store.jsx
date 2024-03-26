@@ -2,12 +2,12 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import {configureStore} from '@reduxjs/toolkit'
 import {thunk} from 'redux-thunk';
 import { composeWithDevTools } from '@redux-devtools/extension';
-import { userReducerLogout, userReducerProfile, userReducerSingIn, userReducerSingUp } from './reducers/userReducer';
-
+import { userReducerLogout, userReducerProfile, userReducerSignIn, userReducerSignUp } from './reducers/userReducer';
+//import { composeWithDevTools } from 'redux-devtools-extension';
 //conbine reducer
 const reducer = combineReducers({
-    singUp: userReducerSingUp,
-    singIn: userReducerSingIn,
+    signUp: userReducerSignUp,
+    signIn: userReducerSignIn,
     userProfile: userReducerProfile,
     logOut: userReducerLogout
 })

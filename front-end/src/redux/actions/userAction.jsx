@@ -13,10 +13,10 @@ import {
   USER_SIGNUP_SUCCESS,
 } from "../constants/userConstants";
 import axios from "axios";
-import toast from "react-toastify";
+import {toast} from "react-toastify";
 
 // sing up action
-export const userSingUpAction = (user) => async (dispatch) => {
+export const userSignUpAction = (user) => async (dispatch) => {
   dispatch({ type: USER_SIGNUP_REQUEST });
   try {
     const { data } = await axios.post("api/singup", user);
@@ -35,10 +35,11 @@ export const userSingUpAction = (user) => async (dispatch) => {
 };
 
 // sing in action
-export const userSingInAction = (user) => async (dispatch) => {
+export const userSignInAction = (user) => async (dispatch) => {
   dispatch({ type: USER_SIGNIN_REQUEST });
+  //console.log(user,"dispach")
   try {
-    const { data } = await axios.post("api/singin", user);
+    const { data } = await axios.post("api/signin", user);
     localStorage.setItem("userInfo", JSON.stringify(data));
     dispatch({
       type: USER_SIGNIN_SUCCESS,

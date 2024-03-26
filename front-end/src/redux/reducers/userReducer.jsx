@@ -18,7 +18,7 @@ import {
 } from "../constants/userConstants";
 
 //sing up
-export const userReducerSingUp = (state = {}, action) => {
+export const userReducerSignUp = (state = {}, action) => {
   switch (action.type) {
     case USER_SIGNUP_REQUEST:
       return { loading: true };
@@ -37,7 +37,7 @@ export const userReducerSingUp = (state = {}, action) => {
 };
 
 //sing in
-export const userReducerSingIn = (state = {}, action) => {
+export const userReducerSignIn = (state = {}, action) => {
   switch (action.type) {
     case USER_SIGNIN_REQUEST:
       return { loading: true, userInfo:null, isAuthenticated:false };

@@ -20,7 +20,8 @@ exports.signup = async (req, res, next) => {
 
 exports.signin = async (req, res, next) => {
   const { email, password } = req.body;
-  //console.log(email)
+  console.log(email)
+  console.log(typeof(password),password)
   try {
     if (!email) {
       return next(new ErrorResponse("Please add email", 400));
@@ -48,7 +49,7 @@ exports.signin = async (req, res, next) => {
 };
 
 const sendTokenResponse = (user, codeStatus, res) => {
-  console.log(user, 'tokennnnn')
+  // console.log(user, 'tokennnnn')
   const token = user.getJwtToken();
   res
     .status(codeStatus)
@@ -69,7 +70,10 @@ exports.logout = (req, res, next) => {
 };
 
 exports.userProfile = (req, res, next) => {
+  console.log('111111111')
+  console.log(res.user,'userrrrrrrrrrr')
   const user = User.findById(req.user.id).select("-password");
+  console.log(req.user.id)
   res.status(200).json({
     success: true,
     user,

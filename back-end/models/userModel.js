@@ -47,10 +47,11 @@ userSchema.pre("save", async function (next) {
 
 // compare user password
 userSchema.methods.comparePassword = async function (enteredPassword) {
-  console.log(enteredPassword.password, 'password1111')
-  console.log(this.password, 'password')
-  //console.log(user.get('password'),'bcryotnnn')
-  return  await bcrypt.compare(enteredPassword, this.password);
+  const pass = JSON.stringify(enteredPassword.password)
+  const p = pass.replace(/['"]+/g, '')
+  console.log(typeof(p), p, 11111111)
+  return  await bcrypt.compare(p,this.password );
+  //return true
 };
 
 // return a JWT token

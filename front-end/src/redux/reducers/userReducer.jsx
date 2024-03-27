@@ -43,7 +43,7 @@ export const userReducerSignIn = (state = {}, action) => {
       return { loading: true, userInfo:null, isAuthenticated:false };
 
     case USER_SIGNIN_SUCCESS:
-      return { loading: false, userInfo:action.pyload, isAuthenticated:false};
+      return { loading: false, userInfo:action.pyload, isAuthenticated:true};
 
     case USER_SIGNIN_FAIL:
       return { loading: false, userInfo:null, isAuthenticated:false, error: action.pyload };
@@ -57,6 +57,7 @@ export const userReducerSignIn = (state = {}, action) => {
 
 //user profile
 export const userReducerProfile = (state = { user: null }, action) => {
+  //console.log(action.type)
   switch (action.type) {
       case USER_LOAD_REQUEST:
           return { loading: true, user: null }

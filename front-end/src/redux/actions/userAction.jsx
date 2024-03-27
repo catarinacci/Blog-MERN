@@ -12,14 +12,15 @@ import {
   USER_SIGNUP_REQUEST,
   USER_SIGNUP_SUCCESS,
 } from "../constants/userConstants";
-import axios from "axios";
+
+import axios from 'axios';
 import {toast} from "react-toastify";
 
 // sing up action
 export const userSignUpAction = (user) => async (dispatch) => {
   dispatch({ type: USER_SIGNUP_REQUEST });
   try {
-    const { data } = await axios.post("api/singup", user);
+    const { data } = await axios.post("api/signin", user);
     dispatch({
       type: USER_SIGNUP_SUCCESS,
       pyload: data,
@@ -34,12 +35,16 @@ export const userSignUpAction = (user) => async (dispatch) => {
   }
 };
 
-// sing in action
+//sing in action
 export const userSignInAction = (user) => async (dispatch) => {
   dispatch({ type: USER_SIGNIN_REQUEST });
-  //console.log(user,"dispach")
+  console.log(user,"dispach")
   try {
-    const { data } = await axios.post("api/signin", user);
+    console.log(user,"dispach")
+
+    const { data } = await axios.post("http://localhost:9000/api/signin", user);
+
+    console.log(data,'data axios')
     localStorage.setItem("userInfo", JSON.stringify(data));
     dispatch({
       type: USER_SIGNIN_SUCCESS,
@@ -56,10 +61,13 @@ export const userSignInAction = (user) => async (dispatch) => {
 };
 
 //user profile action
-export const userProfileAction = () => async (dispatch) => {
+export const userProfileAction = (user) => async (dispatch) => {
+  console.log('user action 111')
+  console.log(user,'user action')
   dispatch({ type: USER_LOAD_REQUEST });
   try {
-    const { data } = await axios.get("/api/me");
+    const { data } = await axios.get("http://localhost:9000/api/me",user);
+    console.log(data, 'data action')
     dispatch({
       type: USER_LOAD_SUCCESS,
       payload: data,
@@ -77,7 +85,7 @@ export const userLogoutAction = () => async (dispatch) => {
   dispatch({ type: USER_LOGOUT_REQUEST });
   try {
     localStorage.removeItem("userInfo");
-    const { data } = await axios.get("/api/logout");
+    const { data } = await axios.get("http://localhost:9000/api/logout");
     dispatch({
       type: USER_LOGOUT_SUCCESS,
       payload: data,

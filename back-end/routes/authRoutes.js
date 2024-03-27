@@ -20,6 +20,6 @@ router.post("/signin", signin);
 router.get("/logout", logout);
 
 // /api/me
-router.get("/me", isAuthenticated, userProfile);
+router.get("/me", userProfile);
 
 module.exports = router;
